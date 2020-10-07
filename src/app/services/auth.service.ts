@@ -4,17 +4,17 @@ import { UserI } from '../models/user';
 import { JwtResponseI } from '../models/jwt-response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
-  AUTH_SERVE: String = "http://localhost:5000/v1/api";
   authSubject = new BehaviorSubject(false);
   private token: String;
 
   constructor( private httpClient: HttpClient) { }
 
   signup(user: UserI): Observable<JwtResponseI>{
-    return this.httpClient.post<JwtResponseI>(`${this.AUTH_SERVE}/auth/signup`,user).pipe(tap(
+    return this.httpClient.post<JwtResponseI>(`${environment.URL_API}/auth/signup`,user).pipe(tap(
       (res: JwtResponseI) => {
         if(res){
           //guardar token
@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   signin(user: UserI): Observable<JwtResponseI>{
-    return this.httpClient.post<JwtResponseI>(`${this.AUTH_SERVE}/auth/signin`,user).pipe(tap(
+    return this.httpClient.post<JwtResponseI>(`${environment.URL_API}/auth/signin`,user).pipe(tap(
       (res: JwtResponseI) => {
         if(res){
           //guardar token
