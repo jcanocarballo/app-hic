@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="login">
+    <div class="login-triangle"></div>
+    
+    <h2 class="login-header">Crear un usuario</h2>
+  
+    <form #frmSignup="ngForm" class="login-container" (ngSubmit)="onSignup(frmSignup)">
+      <p><input type="text" name="name" placeholder="Nombre" ngModel required></p>
+      <p><input type="text" name="telefono" placeholder="Telefono" ngModel required></p>
+      <p><input type="email" name="username" placeholder="Usuario" ngModel required></p>
+      <p><input type="password" name="password" placeholder="Password" ngModel required></p>
+      <p><input type="submit" value="Registrar"></p>
+    </form>
+  </div>
+</div>
