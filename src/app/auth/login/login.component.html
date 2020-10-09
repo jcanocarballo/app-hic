@@ -9,5 +9,6 @@
       <p><input type="password" name="password" placeholder="Password" ngModel required></p>
       <p><input type="submit" value="Enviar"></p>
     </form>
+    <p class="alert alert-danger" *ngIf="isError">{{ mensajeError }}</p>
   </div>
 </div>

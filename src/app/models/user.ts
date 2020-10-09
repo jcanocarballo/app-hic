@@ -1,4 +1,5 @@
 export interface UserI {
+  _id: string,
   username: String,
   password: String,
   name: String,

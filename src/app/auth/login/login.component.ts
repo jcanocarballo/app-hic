@@ -10,6 +10,9 @@ import { UserI } from '../../models/user';
 })
 export class LoginComponent implements OnInit {
 
+  isError: boolean = false;
+  mensajeError: string = "";
+
   constructor( private authService: AuthService,
     private router: Router ) { 
 
@@ -19,8 +22,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSignin(form):void{
+    this.isError = false;
+    this.mensajeError = '';
     this.authService.signin(form.value).subscribe( res =>{
       this.router.navigateByUrl('/auth');
+    },
+    err =>{
+      this.isError = true;
+      if(err.error.status){
+        this.mensajeError = `${err.error.status} : ${err.error.message}`;
+      }else{
+        this.mensajeError = `El servicio no se ecuentra disponible.`;
+      }           
     });
   }
 }

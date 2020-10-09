@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
 
   onSignup(form): void{
     this.authService.signup(form.value).subscribe( res =>{
-      this.router.navigateByUrl('/auth');
+      this.router.navigateByUrl('/auth/login');
     });
   }
 }
