@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ContactoRoutingModule } from './contacto-routing.module';
 import { ContactoComponent } from './contacto.component';
 import { ContactoService } from '../../services/contacto.service';
+// Importar nuestro nuevo modulo
+import { EmailModule } from '../../email/email.module';
 
 @NgModule({
   declarations: [ContactoComponent],
@@ -12,7 +14,8 @@ import { ContactoService } from '../../services/contacto.service';
     CommonModule,
     FormsModule,
     ContactoRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    EmailModule
   ],
   providers:[
     ContactoService

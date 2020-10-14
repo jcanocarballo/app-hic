@@ -14,3 +14,79 @@
 .navbar-nav .active{
   border-bottom: 3px solid blue;
 }
+
+.navbar-default .navbar-nav>li>a:hover{
+  transition:all 300ms;
+  border-bottom: 3px solid orange;
+}
+
+.boton_transiciones{
+  padding: 10px;
+  background: red;
+  color: white;
+  border-radius: 20px; 
+  border: 2px solid blue;
+  transition:border 2s, border-radius 500ms;
+}
+
+.boton_transiciones:hover{
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 2px;
+  background: #ccc;
+  border: 1px solid red;
+}
+
+.caja_animada{
+  margin-top: 15px;
+  background: green;
+  border: 5px solid black;
+  width: 200px;
+  height: 200px;
+  animation-name: deslizamiento;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotacion{
+  from {
+    margin-left: 0px;
+    transition: rotate(0deg);
+  }
+  to {
+    transition: rotate(360deg);
+    margin-left: 600px;
+  }
+}
+
+@keyframes deslizamiento{
+  0% {
+    margin-left: 0px;
+  }
+  25% {
+    margin-left: 400px;
+    background: red;    
+  }
+  50%{
+    border-radius: 1000px;
+  }
+  75%{
+    margin-left: 0px;
+    background: yellow;
+    border-radius: 0px;
+  }
+  100%{
+    background: green;
+  }
+}
+
+@keyframes deslizamiento1{
+  from {
+    margin-left: 0px;
+  }
+  to {
+    margin-left: 400px;
+    background: red;
+  }
+}
