@@ -10,12 +10,13 @@ import { UserI } from '../../models/user';
 })
 export class LoginComponent implements OnInit {
 
+  public title: string;
   isError: boolean = false;
   mensajeError: string = "";
 
   constructor( private authService: AuthService,
     private router: Router ) { 
-
+      this.title = 'Iniciar Sesión';
     }
 
   ngOnInit(): void {

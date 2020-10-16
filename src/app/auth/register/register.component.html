@@ -1,15 +1,20 @@
 <div class="container">
-  <div class="login">
-    <div class="login-triangle"></div>
-    
-    <h2 class="login-header">Crear un usuario</h2>
-  
-    <form #frmSignup="ngForm" class="login-container" (ngSubmit)="onSignup(frmSignup)">
-      <p><input type="text" name="name" placeholder="Nombre" ngModel required></p>
-      <p><input type="text" name="telefono" placeholder="Telefono" ngModel required></p>
-      <p><input type="email" name="username" placeholder="Usuario" ngModel required></p>
-      <p><input type="password" name="password" placeholder="Password" ngModel required></p>
-      <p><input type="submit" value="Registrar"></p>
-    </form>
+  <div class="col-lg-6 col-lg-offset-2">
+    <div class="jumbotron">
+      <div class="login">
+        <div class="login-triangle"></div>
+        
+        <h2 class="login-header">{{title}}</h2>
+      
+        <form #frmSignup="ngForm" class="login-container" (ngSubmit)="onSignup(frmSignup)">
+          <p><input type="text" class="form-control" name="name" placeholder="Nombre" ngModel required></p>
+          <p><input type="text" class="form-control" name="telefono" placeholder="Telefono" ngModel required></p>
+          <p><input type="email" class="form-control" name="username" placeholder="Usuario" ngModel required></p>
+          <p><input type="password" class="form-control" name="password" placeholder="Password" ngModel required></p>
+          <p><input type="submit" class="btn btn-primary" value="Registrar"></p>
+        </form>
+        <p class="alert alert-danger" *ngIf="isError">{{ mensajeError }}</p>
+      </div>
+    </div>
   </div>
 </div>
