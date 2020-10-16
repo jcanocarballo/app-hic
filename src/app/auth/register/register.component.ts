@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-// import { UserI } from '../../models/user';
+import { UserI } from '../../models/user';
+import { fadeIn } from '../../components/animation';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  animations: [
+    fadeIn
+  ]
 })
 export class RegisterComponent implements OnInit {
 
