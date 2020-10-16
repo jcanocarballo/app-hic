@@ -9,7 +9,7 @@ import { AddComponent } from './components/add/add.component';
 
 const adminRoutes: Routes = [
   {
-    path: 'admin-panel', 
+    path: 'usuarios', 
     component: MainComponent,
     children: [
       {

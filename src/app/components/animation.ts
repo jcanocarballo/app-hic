@@ -6,7 +6,7 @@ export const fadeIn =
       style({
         opacity: 0
       }),
-      animate('500ms linear',
+      animate('300ms linear',
       style({
         opacity: 1
       }))
