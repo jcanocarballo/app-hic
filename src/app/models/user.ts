@@ -1,10 +1,15 @@
-export interface UserI {
-  _id: string,
-  username: String,
-  password: String,
-  name: String,
-  ape_pat: String,
-  ape_mat: String,
-  telefono: String,
-  role: String
+export class User {
+
+  public _id: string;
+  public username: String;
+  public password: String;
+  public name: String;
+  public ape_pat: String;
+  public ape_mat: String;
+  public telefono: String;
+  public role: String;
+
+  constructor(
+  ){
+  }
 }

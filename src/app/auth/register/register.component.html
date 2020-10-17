@@ -6,12 +6,24 @@
         
         <h2 class="login-header">{{title}}</h2>
       
-        <form #frmSignup="ngForm" class="login-container" (ngSubmit)="onSignup(frmSignup)">
-          <p><input type="text" class="form-control" name="name" placeholder="Nombre" ngModel required></p>
-          <p><input type="text" class="form-control" name="telefono" placeholder="Telefono" ngModel required></p>
-          <p><input type="email" class="form-control" name="username" placeholder="Usuario" ngModel required></p>
-          <p><input type="password" class="form-control" name="password" placeholder="Password" ngModel required></p>
-          <p><input type="submit" class="btn btn-primary" value="Registrar"></p>
+        <form #frmSignup="ngForm" class="login-container" (ngSubmit)="onSignup()">
+          <p>
+            <input type="text" class="form-control" name="name" placeholder="Nombre" #name="ngModel" [(ngModel)]="user.name" required />           
+            <span *ngIf="!name.valid && name.touched">El nombre es requerido</span> 
+          </p>
+          <p>
+            <input type="text" class="form-control" name="telefono" placeholder="Telefono" #telefono="ngModel" [(ngModel)]="user.telefono" required />
+            <span *ngIf="!telefono.valid && telefono.touched">El telefono es requerido</span> 
+          </p>
+          <p>
+            <input type="email" class="form-control" name="username" placeholder="Usuario" #username="ngModel" [(ngModel)]="user.username" required />
+            <span *ngIf="!username.valid && username.touched">El usuario es requerido</span> 
+          </p>
+          <p>
+            <input type="password" class="form-control" name="password" placeholder="Password" #password="ngModel" [(ngModel)]="user.password" required /> 
+            <span *ngIf="!password.valid && password.touched">El password es requerido</span>          
+          </p>
+          <p><input type="submit" class="btn btn-primary" value="Registrar" [disabled]="!frmSignup.form.valid"></p>
         </form>
         <p class="alert alert-danger" *ngIf="isError">{{ mensajeError }}</p>
       </div>

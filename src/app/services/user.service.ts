@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserI } from '../models/user';
+import { User } from '../models/user';
 import { tap } from 'rxjs/operators';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, from } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -11,4 +11,14 @@ import { environment } from '../../environments/environment';
 export class UserService {
 
   constructor(private httpClient: HttpClient) { }
+
+  obtenerListaUsuarios(){
+    return this.httpClient.get<User[]>(`${environment.URL_API}/user`).pipe(tap(
+      (res: User[]) => {
+        if(res){
+          console.log(res);
+        }
+      }
+    ));
+  }
 }

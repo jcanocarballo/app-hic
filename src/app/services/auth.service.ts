@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserI } from '../models/user';
+import { User } from '../models/user';
 import { JwtResponseI } from '../models/jwt-response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -13,7 +13,7 @@ export class AuthService {
 
   constructor( private httpClient: HttpClient) { }
 
-  signup(user: UserI): Observable<JwtResponseI>{
+  signup(user: User): Observable<JwtResponseI>{
     return this.httpClient.post<JwtResponseI>(`${environment.URL_API}/auth/signup`,user).pipe(tap(
       (res: JwtResponseI) => {
         if(res){
@@ -24,7 +24,7 @@ export class AuthService {
     ));
   }
 
-  signin(user: UserI): Observable<JwtResponseI>{
+  signin(user: User): Observable<JwtResponseI>{
     return this.httpClient.post<JwtResponseI>(`${environment.URL_API}/auth/signin`,user).pipe(tap(
       (res: JwtResponseI) => {
         if(res){

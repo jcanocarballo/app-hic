@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { UserI } from '../../models/user';
+import { User } from '../../models/user';
 import { fadeIn } from '../../components/animation';
 
 @Component({
@@ -17,17 +17,21 @@ export class RegisterComponent implements OnInit {
   public title: string;
   isError: boolean = false;
   mensajeError: string = "";
+  public user: User;
   
-  constructor(private authService: AuthService,
+  constructor(private route: ActivatedRoute, 
+    private authService: AuthService,
     private router: Router) { 
       this.title = "Registro";
+      this.user = new User();
     }
 
   ngOnInit(): void {
+    console.log("Componete registrar iniciado...");
   }
 
-  onSignup(form): void{
-    this.authService.signup(form.value).subscribe( res =>{
+  onSignup(): void{
+    this.authService.signup(this.user).subscribe( res =>{
       this.router.navigateByUrl('/auth/login');
     },
     err =>{

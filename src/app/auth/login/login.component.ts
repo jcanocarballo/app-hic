@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { UserI } from '../../models/user';
+import { User } from '../../models/user';
 import { fadeIn } from '../../components/animation';
 
 @Component({

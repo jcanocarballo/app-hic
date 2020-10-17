@@ -11,6 +11,10 @@ import { ListComponent } from './components/list/list.component';
 import { EditComponent } from './components/edit/edit.component';
 import { AddComponent } from './components/add/add.component';
 
+// Servicios
+import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
+
 @NgModule({
   declarations: [
     MainComponent,
@@ -31,6 +35,8 @@ import { AddComponent } from './components/add/add.component';
     AddComponent
   ],
   providers:[
+    AuthService,
+    UserService
   ]
 })
 export class UserModule { }
