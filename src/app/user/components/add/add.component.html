@@ -1,0 +1,37 @@
+<div class="container" [@fadeIn]>
+  <div class="col-lg-6 col-lg-offset-2">
+    <div class="jumbotron">
+      <h3>{{title}}</h3>    
+      <form #frmAddUser="ngForm" (ngSubmit)="addUser()">
+        <p>
+          <input type="text" placeholder="Nombre" class="form-control">
+        </p>
+        <p>
+          <input type="text" placeholder="Ape Pat:" class="form-control">
+        </p>
+        <p>
+          <input type="text" placeholder="Ape Mat:" class="form-control">
+        </p>
+        <p>
+          <input type="text" placeholder="Usuario:" class="form-control">
+        </p>
+        <p>
+          <input type="text" placeholder="Password:" class="form-control">
+        </p>
+        <p>
+          <input type="text" placeholder="Telefono:" class="form-control">
+        </p>
+        <p>
+          <input type="text" placeholder="Role:" class="form-control">
+        </p>
+        <input type="submit" value="Crear usuario" class="btn btn-success">
+        <!-- <a style="margin-left: 1px" class="boton_activo btn btn-success"
+          [@marcar]="status" (click)="cambiarEstado(status)">
+          <span *ngIf="status == 'active'">Boton activado</span>
+          <span *ngIf="status == 'inactive'">Boton inactivo</span>
+          </a> -->
+      </form>
+      <p class="alert alert-danger" *ngIf="isError">{{ mensajeError }}</p>
+    </div>
+  </div>
+</div>

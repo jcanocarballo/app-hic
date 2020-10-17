@@ -1,15 +1,35 @@
-<div class="container">
-  <div class="login">
-    <div class="login-triangle"></div>
-    
-    <h2 class="login-header">Crear un usuario</h2>
-  
-    <form #frmSignup="ngForm" class="login-container" (ngSubmit)="onSignup(frmSignup)">
-      <p><input type="text" name="name" placeholder="Nombre" ngModel required></p>
-      <p><input type="text" name="telefono" placeholder="Telefono" ngModel required></p>
-      <p><input type="email" name="username" placeholder="Usuario" ngModel required></p>
-      <p><input type="password" name="password" placeholder="Password" ngModel required></p>
-      <p><input type="submit" value="Registrar"></p>
-    </form>
+<div class="container" [@fadeIn]>
+  <div class="col-lg-6 col-lg-offset-2">
+    <div class="jumbotron">
+      <div class="login">
+        <div class="login-triangle"></div>
+        
+        <h2 class="login-header">{{title}}</h2>
+      
+        <div class="alert alert-success" *ngIf="status">
+          Registro completado correctamente, <a [routerLink]="['/auth/login']">identificate aquí</a>
+        </div>
+        <p class="alert alert-danger" *ngIf="isError">{{ mensajeError }}</p>
+        <form #frmSignup="ngForm" class="login-container" (ngSubmit)="onSignup(frmSignup)">
+          <p>
+            <input type="text" class="form-control" name="name" placeholder="Nombre" #name="ngModel" [(ngModel)]="user.name" required />           
+            <span *ngIf="!name.valid && name.touched">El nombre es requerido</span> 
+          </p>
+          <p>
+            <input type="text" class="form-control" name="telefono" placeholder="Telefono" #telefono="ngModel" [(ngModel)]="user.telefono" required />
+            <span *ngIf="!telefono.valid && telefono.touched">El telefono es requerido</span> 
+          </p>
+          <p>
+            <input type="email" class="form-control" name="username" placeholder="Correo" #username="ngModel" [(ngModel)]="user.username" required email />
+            <span *ngIf="!username.valid && username.touched">El correo es requerido</span> 
+          </p>
+          <p>
+            <input type="password" class="form-control" name="password" placeholder="Password" #password="ngModel" [(ngModel)]="user.password" required /> 
+            <span *ngIf="!password.valid && password.touched">El password es requerido</span>          
+          </p>
+          <p><input type="submit" class="btn btn-primary" value="Registrar" [disabled]="!frmSignup.form.valid"></p>
+        </form>      
+      </div>
+    </div>
   </div>
 </div>

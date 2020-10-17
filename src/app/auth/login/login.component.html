@@ -1,14 +1,23 @@
-<div class="container">
-  <div class="login">
-    <div class="login-triangle"></div>
-    
-    <h2 class="login-header">Ingresar</h2>
-  
-    <form #frmSingin="ngForm" class="login-container" (ngSubmit)="onSignin(frmSingin)">
-      <p><input type="email" name="username" placeholder="Usuario" ngModel required></p>
-      <p><input type="password" name="password" placeholder="Password" ngModel required></p>
-      <p><input type="submit" value="Enviar"></p>
-    </form>
-    <p class="alert alert-danger" *ngIf="isError">{{ mensajeError }}</p>
+<div class="container" [@fadeIn]>
+  <div class="col-lg-6 col-lg-offset-2">
+    <div class="jumbotron">
+      <div class="login">
+        <div class="login-triangle"></div>
+        
+        <h2 class="login-header">{{title}}</h2>
+        <p class="alert alert-danger" *ngIf="isError">{{ mensajeError }}</p>      
+        <form #frmSingin="ngForm" class="login-container" (ngSubmit)="onSignin(frmSingin)">
+          <p>
+            <input type="email" class="form-control" name="username" placeholder="Correo" #username="ngModel" [(ngModel)]="user.username" required email />
+            <span *ngIf="!username.valid && username.touched">El correo es requerido</span>
+          </p>
+          <p>
+            <input type="password" class="form-control" name="password" placeholder="Password" #password="ngModel" [(ngModel)]="user.password" required /> 
+            <span *ngIf="!password.valid && password.touched">El password es requerido</span> 
+          </p>
+          <p><input type="submit" class="btn btn-success" value="Enviar" [disabled]="!frmSingin.form.valid"></p>
+        </form>        
+      </div>
+    </div>
   </div>
 </div>
