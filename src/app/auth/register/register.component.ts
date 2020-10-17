@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   isError: boolean = false;
   mensajeError: string = "";
   public user: User;
+  status: boolean;
   
   constructor(private route: ActivatedRoute, 
     private authService: AuthService,
@@ -30,9 +31,16 @@ export class RegisterComponent implements OnInit {
     console.log("Componete registrar iniciado...");
   }
 
-  onSignup(): void{
+  onSignup(frmSignup): void{
+    this.mensajeError = '';
+    this.isError = false;
     this.authService.signup(this.user).subscribe( res =>{
-      this.router.navigateByUrl('/auth/login');
+      if(res._id){
+        this.status = true;
+        frmSignup.reset();        
+      }else{
+        this.mensajeError = 'Error al registrarse.';
+      }
     },
     err =>{
       this.isError = true;

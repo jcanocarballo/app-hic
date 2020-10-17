@@ -10,8 +10,7 @@ const routes: Routes = [
   {path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
   {path: '', loadChildren: './user/user.module#UserModule'},
   {path: 'home', loadChildren: './components/home/home.module#HomeModule'},
-  {path: 'contacto', loadChildren: './components/contacto/contacto.module#ContactoModule'},
-  {path: '', loadChildren: './admin/admin.module#AdminModule'}
+  {path: 'contacto', loadChildren: './components/contacto/contacto.module#ContactoModule'}
 ];
 
 @NgModule({

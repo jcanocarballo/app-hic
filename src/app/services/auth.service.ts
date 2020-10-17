@@ -13,12 +13,12 @@ export class AuthService {
 
   constructor( private httpClient: HttpClient) { }
 
-  signup(user: User): Observable<JwtResponseI>{
-    return this.httpClient.post<JwtResponseI>(`${environment.URL_API}/auth/signup`,user).pipe(tap(
-      (res: JwtResponseI) => {
+  signup(user: User): Observable<User>{
+    console.log(user)
+    return this.httpClient.post<User>(`${environment.URL_API}/auth/signup`,user).pipe(tap(
+      (res: User) => {
         if(res){
-          //redirigir al login
-          //this.saveToken(res.dataUser.accessToken, res.dataUser.expiresIn);
+          return res;
         }
       }
     ));
@@ -28,7 +28,6 @@ export class AuthService {
     return this.httpClient.post<JwtResponseI>(`${environment.URL_API}/auth/signin`,user).pipe(tap(
       (res: JwtResponseI) => {
         if(res){
-          //guardar token
           this.saveToken(res.dataUser.accessToken, res.dataUser.expiresIn);
         }
       }

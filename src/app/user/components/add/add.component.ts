@@ -31,6 +31,7 @@ export class AddComponent implements OnInit {
   public user: User;
   mensajeError: string = "";
   isError: boolean = false;
+  mensaje: string;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -50,8 +51,11 @@ export class AddComponent implements OnInit {
   }
 
   addUser(){
-    this.authService.signup(this.user).subscribe( res =>{    
+    this.authService.signup(this.user).subscribe( res =>{          
       console.log(res);
+      if(res._id){
+        this.mensaje = "El registro se ha realizado correctamente.";
+      }
     },
     err =>{
       this.isError = true;

@@ -17,20 +17,23 @@ export class LoginComponent implements OnInit {
   public title: string;
   isError: boolean = false;
   mensajeError: string = "";
+  public user: User;
 
   constructor( private authService: AuthService,
     private router: Router ) { 
       this.title = 'Iniciar Sesión';
+      this.user = new User();
     }
 
   ngOnInit(): void {
   }
 
-  onSignin(form):void{
+  onSignin(frmSingin):void{
     this.isError = false;
     this.mensajeError = '';
-    this.authService.signin(form.value).subscribe( res =>{
-      this.router.navigateByUrl('/auth');
+    this.authService.signin(this.user).subscribe( res =>{
+      frmSingin.reset();
+      this.router.navigateByUrl('/');
     },
     err =>{
       this.isError = true;
