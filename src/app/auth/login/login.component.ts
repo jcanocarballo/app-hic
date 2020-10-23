@@ -26,6 +26,9 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    console.log('login.component cargado!!')
+    console.log(this.authService.getIdentity())
+    console.log(this.authService.getToken())
   }
 
   onSignin(frmSingin):void{
