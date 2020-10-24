@@ -12,7 +12,8 @@
           </a>
         </li>
         <li>
-          <a [routerLink]="['/usuarios']" [routerLinkActive]="['active']">
+          <a [routerLink]="['/usuarios']" [routerLinkActive]="['active']"
+          *ngIf="identity && identity.role == 'administrador'">
             <span class="glyphicon glyphicon-user"></span>
             Usuarios
           </a>
@@ -24,7 +25,7 @@
           </a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
         <li>
           <a [routerLink]="['/auth/register']">
             <span class="glyphicon glyphicon-user"></span>
@@ -36,6 +37,33 @@
             <span class="glyphicon glyphicon-log-in"></span>
             Login
           </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" *ngIf="identity">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            {{identity.name}} <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngIf="identity && identity.role == 'administrador'">
+              <a [routerLink]="['/usuarios']">
+                <span class="glyphicon glyphicon-tasks"></span>
+                Administración
+              </a>              
+            </li>
+            <li>
+              <a [routerLink]="['/perfil']" >
+                <span class="glyphicon glyphicon-cog"></span>
+                Mis datos
+              </a>
+            </li>
+            <li>
+              <a class="pointer" (click)="logout()">
+                <span class="glyphicon glyphicon-log-in"></span>
+                Salir
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

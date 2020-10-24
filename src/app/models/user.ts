@@ -1,13 +1,13 @@
 export class User {
 
   public _id: string;
-  public username: String;
-  public password: String;
-  public name: String;
-  public ape_pat: String;
-  public ape_mat: String;
-  public telefono: String;
-  public role: String;
+  public username: string;
+  public password: string;
+  public name: string;
+  public ape_pat: string;
+  public ape_mat: string;
+  public telefono: string;
+  public role: string;
 
   constructor(
   ){

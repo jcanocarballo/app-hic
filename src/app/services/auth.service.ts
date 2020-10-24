@@ -9,9 +9,10 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class AuthService {
   authSubject = new BehaviorSubject(false);
-  private token: String;
+  private token: string;
+  private identity;
 
-  constructor( private httpClient: HttpClient) { }
+  constructor( public httpClient: HttpClient) { }
 
   signup(user: User): Observable<User>{
     console.log(user)
@@ -28,7 +29,7 @@ export class AuthService {
     return this.httpClient.post<JwtResponseI>(`${environment.URL_API}/auth/signin`,user).pipe(tap(
       (res: JwtResponseI) => {
         if(res){
-          this.saveToken(res.dataUser.accessToken, res.dataUser.expiresIn);
+          this.saveToken(res.dataUser, res.dataUser.expiresIn);
         }
       }
     ));
@@ -36,20 +37,32 @@ export class AuthService {
 
   logout(): void{
     this.token = '';
+    localStorage.removeItem('IDENTITY');
     localStorage.removeItem('ACCESS_TOKEN');
     localStorage.removeItem('EXPIRE_IN');
   }
 
-  private saveToken(token: string, expiresIn: string): void{
-    localStorage.setItem('ACCESS_TOKEN', token);
+  private saveToken(user, expiresIn: string): void{
+    localStorage.setItem('IDENTITY',JSON.stringify(user));
+    localStorage.setItem('ACCESS_TOKEN', user.accessToken);
     localStorage.setItem('EXPIRE_IN', expiresIn);
-    this.token = token;
+    this.token = user.accessToken;
   }
 
-  private getToken(): String{
+  public getToken(): string{
     if(!this.token){
       this.token = localStorage.getItem('ACCESS_TOKEN');
     }
     return this.token;
+  }
+
+  public getIdentity(){
+    let identity = JSON.parse(localStorage.getItem('IDENTITY'))
+    if(identity != 'undefined'){
+      this.identity = identity;
+    }else{
+      this.identity = null;
+    }
+    return this.identity;
   }
 }

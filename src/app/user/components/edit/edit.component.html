@@ -1,7 +1,39 @@
 <div class="container" [@fadeIn]>
-  <div class="col-lg-12">
+  <div class="col-lg-6">
     <div class="jumbotron">
       <h3>{{title}}</h3>
+      <div class="alert alert-success" *ngIf="status">
+        Datos actualizados correctamente.
+      </div>
+      <p class="alert alert-danger" *ngIf="isError">{{ mensajeError }}</p>
+      <form #frmSignup="ngForm" class="login-container" *ngIf="user" (ngSubmit)="guardar()">
+        <p>
+          <input type="text" class="form-control" name="name" placeholder="Nombre" #name="ngModel" [(ngModel)]="user.name" required />           
+          <span *ngIf="!name.valid && name.touched">El nombre es requerido</span> 
+        </p>
+        <p>
+          <input type="text" class="form-control" name="ape_pat" placeholder="Apellido Pat" #ape_pat="ngModel" [(ngModel)]="user.ape_pat" required />           
+          <span *ngIf="!ape_pat.valid && ape_pat.touched">El apellido paterno es requerido</span> 
+        </p>
+        <p>
+          <input type="text" class="form-control" name="ape_mat" placeholder="Apellido Mat" #ape_mat="ngModel" [(ngModel)]="user.ape_mat" required />           
+          <span *ngIf="!ape_mat.valid && ape_mat.touched">El apellido materno es requerido</span> 
+        </p>
+        <p>
+          <input type="text" class="form-control" name="telefono" placeholder="Telefono" #telefono="ngModel" [(ngModel)]="user.telefono" required />
+          <span *ngIf="!telefono.valid && telefono.touched">El telefono es requerido</span> 
+        </p>
+        <p>
+          <input type="email" class="form-control" name="username" placeholder="Correo" #username="ngModel" [(ngModel)]="user.username" required email />
+          <span *ngIf="!username.valid && username.touched">El correo es requerido</span> 
+        </p>
+        <p>
+          <select [(ngModel)]="user.role" name="roles">
+            <option *ngFor="let option of roles" [value]="option.name"> {{ option.name }} </option>
+          </select>
+        </p>
+        <p><input type="submit" class="btn btn-primary" value="Guardar" [disabled]="!frmSignup.form.valid"></p>
+      </form> 
     </div>
   </div>
 </div>
