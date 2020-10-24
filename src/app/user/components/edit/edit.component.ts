@@ -21,8 +21,7 @@ export class EditComponent implements OnInit{
   roles = [
     { name: 'administrador'},
     { name: 'usuario'},
-    ];
-    defaultOption = null;
+    ];    
 
   constructor(private route: ActivatedRoute, 
     private userService: UserService,
