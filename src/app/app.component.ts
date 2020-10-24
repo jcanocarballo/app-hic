@@ -1,4 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class AppComponent implements OnInit, DoCheck{
   public title:string;
   public identity;
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService,
+    private router: Router){
     this.title = "APP";
   }
 
@@ -22,5 +24,11 @@ export class AppComponent implements OnInit, DoCheck{
 
   ngDoCheck(){
     this.identity = this.authService.getIdentity();
+  }
+
+  logout(){
+    localStorage.clear();
+    this.identity = null;
+    this.router.navigateByUrl('/');
   }
 }

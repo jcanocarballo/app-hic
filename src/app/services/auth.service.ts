@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class AuthService {
   authSubject = new BehaviorSubject(false);
-  private token: String;
+  private token: string;
   private identity;
 
   constructor( public httpClient: HttpClient) { }
@@ -49,7 +49,7 @@ export class AuthService {
     this.token = user.accessToken;
   }
 
-  public getToken(): String{
+  public getToken(): string{
     if(!this.token){
       this.token = localStorage.getItem('ACCESS_TOKEN');
     }

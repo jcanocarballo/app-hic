@@ -1,6 +1,10 @@
 
 
 /* 'Open Sans' font from Google Fonts */
+.pointer{
+  cursor: pointer;
+}
+
 .navigation.col-lg-12{
   margin-top: 10px;
 }

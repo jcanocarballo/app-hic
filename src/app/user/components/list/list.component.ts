@@ -28,7 +28,8 @@ export class ListComponent implements OnInit{
 
   obtenerListaUsuarios(){
     this.userService.obtenerListaUsuarios().subscribe( res => {
-      console.log(res)
+      this.users = res
+      console.log(this.users)
     },
     err =>{
       console.log(err)

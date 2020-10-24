@@ -45,13 +45,13 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a>
+              <a [routerLink]="['/perfil']" >
                 <span class="glyphicon glyphicon-log-in"></span>
                 Mis datos
               </a>
             </li>
             <li>
-              <a>
+              <a class="pointer" (click)="logout()">
                 <span class="glyphicon glyphicon-log-in"></span>
                 Salir
               </a>
