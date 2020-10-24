@@ -7,10 +7,14 @@ import { ListComponent } from './components/list/list.component';
 import { EditComponent } from './components/edit/edit.component';
 import { AddComponent } from './components/add/add.component';
 
+// Guards
+import { AdminGuard } from '../guard/admin.guard';
+
 const adminRoutes: Routes = [
   {
     path: 'usuarios', 
     component: MainComponent,
+    canActivate: [AdminGuard],
     children: [
       {
         path: '', redirectTo: 'listado', pathMatch: 'full'

@@ -1,4 +1,3 @@
-import { from } from 'rxjs';
 // Importar modulos necesarios para crear modulos
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

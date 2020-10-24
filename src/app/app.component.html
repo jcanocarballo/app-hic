@@ -12,7 +12,8 @@
           </a>
         </li>
         <li>
-          <a [routerLink]="['/usuarios']" [routerLinkActive]="['active']">
+          <a [routerLink]="['/usuarios']" [routerLinkActive]="['active']"
+          *ngIf="identity && identity.role == 'administrador'">
             <span class="glyphicon glyphicon-user"></span>
             Usuarios
           </a>
@@ -44,9 +45,15 @@
             {{identity.name}} <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
+            <li *ngIf="identity && identity.role == 'administrador'">
+              <a [routerLink]="['/usuarios']">
+                <span class="glyphicon glyphicon-tasks"></span>
+                Administración
+              </a>              
+            </li>
             <li>
               <a [routerLink]="['/perfil']" >
-                <span class="glyphicon glyphicon-log-in"></span>
+                <span class="glyphicon glyphicon-cog"></span>
                 Mis datos
               </a>
             </li>

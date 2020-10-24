@@ -27,8 +27,8 @@ export class AppComponent implements OnInit, DoCheck{
   }
 
   logout(){
-    localStorage.clear();
+    this.authService.logout();
     this.identity = null;
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/auth/login');
   }
 }

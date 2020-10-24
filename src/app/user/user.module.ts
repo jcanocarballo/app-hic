@@ -14,6 +14,9 @@ import { AddComponent } from './components/add/add.component';
 // Servicios
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
+import { AdminGuard } from '../guard/admin.guard';
+
+// Guards
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { AuthService } from '../services/auth.service';
   ],
   providers:[
     AuthService,
-    UserService
+    UserService,
+    AdminGuard
   ]
 })
 export class UserModule { }

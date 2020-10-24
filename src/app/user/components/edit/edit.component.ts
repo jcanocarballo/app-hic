@@ -35,7 +35,7 @@ export class EditComponent implements OnInit{
       this.obtenerUsuarioById();
     }
     obtenerUsuarioById(){
-      this.userService.obtenerUsuarioById('5f7cce7064577d320cca179b').subscribe(res => {
+      this.userService.obtenerUsuarioById('5f8b74199b562096d0806c80').subscribe(res => {
         this.user = res;
       },
       err =>{

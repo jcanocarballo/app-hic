@@ -3,17 +3,19 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'main-email',
   template: `
-    <div class="panel panel-default">
-      <h2>{{title}}</h2>
+    <div>
+      <h3>{{title}}</h3>
       <hr/>
       <mostrar-email></mostrar-email>
       <guardar-email></guardar-email> 
+      <hr/>
+      <h3>{{title}}</h3>
     </div>       
   `
 })
 export class MainEmailComponent implements OnInit{
   
-  title = 'Modulo de email';
+  title = ' ************************************** ';
   
   ngOnInit(){
     console.log("Componente principal del modulo cargado....");
