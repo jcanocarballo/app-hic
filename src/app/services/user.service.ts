@@ -13,7 +13,7 @@ export class UserService {
   constructor(private httpClient: HttpClient,
               private authService: AuthService) { }
 
-  obtenerListaUsuarios(){
+  getUsuarios(){
     let headers = new HttpHeaders({
       'Content-Type':'application/json',
       'Authorization': this.authService.getToken()
@@ -26,7 +26,7 @@ export class UserService {
     ));
   }
 
-  obtenerUsuarioById(id: string){
+  getUsuarioById(id: string){
     let headers = new HttpHeaders({
       'Content-Type':'application/json',
       'Authorization': this.authService.getToken()
@@ -48,6 +48,19 @@ export class UserService {
     return this.httpClient.put<User>(`${environment.URL_API}/user/${user._id}`, params, {headers: headers})
     .pipe(tap(
       (res: User) => {
+        return res;
+      }
+    ));
+  }
+
+  deleteUser(id: string){
+    let headers = new HttpHeaders({
+      'Content-Type':'application/json',
+      'authorization': this.authService.getToken()
+    });
+    return this.httpClient.delete<boolean>(`${environment.URL_API}/user/${id}`, {headers: headers})
+    .pipe(tap(
+      (res: boolean) => {
         return res;
       }
     ));

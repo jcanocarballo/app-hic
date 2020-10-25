@@ -6,6 +6,7 @@ import { MainComponent } from './components/main/main.component';
 import { ListComponent } from './components/list/list.component';
 import { EditComponent } from './components/edit/edit.component';
 import { AddComponent } from './components/add/add.component';
+import { DetalleComponent } from './components/detalle/detalle.component';
 
 // Guards
 import { AdminGuard } from '../guard/admin.guard';
@@ -28,8 +29,12 @@ const adminRoutes: Routes = [
         component: AddComponent
       },
       {
-        path: 'editar',
+        path: 'editar/:id',
         component: EditComponent
+      },
+      {
+        path: 'detalle/:id',
+        component: DetalleComponent
       }
     ]
   }  
