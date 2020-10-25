@@ -23,16 +23,29 @@ export class ListComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.obtenerListaUsuarios();
+    this.getUsuarios();
   }
 
-  obtenerListaUsuarios(){
-    this.userService.obtenerListaUsuarios().subscribe( res => {
+  getUsuarios(){
+    this.userService.getUsuarios().subscribe( res => {
       this.users = res
       console.log(this.users)
     },
     err =>{
       console.log(err)
+    })
+  }
+
+  deleteUser(id){
+    this.userService.deleteUser(id).subscribe(res =>{
+      if(res){
+        this.getUsuarios();
+      }else{
+        alert("Error en el servidor");
+      }
+    },
+    err => {
+      alert(err);
     })
   }
 }

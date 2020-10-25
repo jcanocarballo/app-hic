@@ -32,6 +32,13 @@
             <option *ngFor="let option of roles" [value]="option.name"> {{ option.name }} </option>
           </select>
         </p>
+        <div class="image_for_edit" *ngIf="user.image && user.image != 'null'">
+          <img src="{{ urlImage + '/get-image-file/' + user.image}}" >
+        </div>
+        <p>
+          <label>Sube un avatar</label>
+          <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)">
+        </p>
         <p><input type="submit" class="btn btn-primary" value="Guardar" [disabled]="!frmSignup.form.valid"></p>
       </form> 
     </div>

@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user';
 import { fadeIn } from '../../../components/animation';
+import { UploadService } from '../../../services/upload.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'admin-edit',
@@ -21,34 +23,59 @@ export class EditComponent implements OnInit{
   roles = [
     { name: 'administrador'},
     { name: 'usuario'},
-    ];
-    defaultOption = null;
+    ];    
+  public urlImage: string;
+  public idUser: string;
+
+  public filesToUpload: Array<File>;
 
   constructor(private route: ActivatedRoute, 
     private userService: UserService,
-    private router: Router){
+    private router: Router,
+    private uploadService: UploadService){
       this.title = "Actualizar datos del usuario."
+      this.urlImage = `${environment.URL_API}/user/`;
     }
 
     ngOnInit(){
       console.log("Componete registrar iniciado...");
-      this.obtenerUsuarioById();
+      this.getUsuarioById();
     }
-    obtenerUsuarioById(){
-      this.userService.obtenerUsuarioById('5f8b74199b562096d0806c80').subscribe(res => {
-        this.user = res;
-      },
-      err =>{
-        console.log(err);
-      }
-      )
+    getUsuarioById(){
+      this.route.params.forEach((params: Params) => {
+        this.idUser = params['id'];
+        if(!this.idUser){
+          this.router.navigateByUrl('/usuarios/listado');
+        }
+        this.userService.getUsuarioById(this.idUser).subscribe(res => {
+          this.user = res;
+        },
+        err =>{
+          console.log(err);
+        })
+      })      
     }
     guardar(){
       this.mensajeError = '';
       this.isError = false;
       this.userService.updateUser(this.user).subscribe(res => {
-        this.status = true;
-        console.log(res);
+        if(!res._id){
+          this.isError = true;
+        }else{
+          this.status = true;
+          if(!this.filesToUpload){
+            this.router.navigate(['/usuarios/detalle', this.user._id]);
+          }else{
+            this.uploadService.makeFileRequest(this.idUser,[], this.filesToUpload, 'image')
+            .then((res: User) => {
+              this.user.image = res.image;
+              this.router.navigate(['/usuarios/detalle', this.user._id]);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+          }                   
+        }        
       },
       err => {
         this.isError = true;
@@ -58,5 +85,9 @@ export class EditComponent implements OnInit{
           this.mensajeError = `El servicio no se ecuentra disponible.`;
         } 
       })      
+    }
+
+    fileChangeEvent(fileInput: any){
+      this.filesToUpload = <Array<File>>fileInput.target.files;
     }
 }

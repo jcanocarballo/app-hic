@@ -31,30 +31,38 @@ export class AddComponent implements OnInit {
   public user: User;
   mensajeError: string = "";
   isError: boolean = false;
-  mensaje: string;
+
+  roles = [
+    { name: 'administrador'},
+    { name: 'usuario'},
+    ];
+    defaultOption = 'usuario';
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private authService: AuthService){
     this.title = 'Añadir';
-    this.status = 'inactive';
+    this.status = false;
+    this.user = new User();
+    this.user.name = '';
+    this.user.ape_pat = '';
+    this.user.ape_mat = '';
+    this.user.username = '';
+    this.user.password = '';
+    this.user.telefono = '';
   }
 
   ngOnInit(){}
-  
-  cambiarEstado(status){
-    if(status == 'inactive'){
-      this.status = 'active'
-    }else{
-      this.status = 'inactive';
-    }
-  }
 
-  addUser(){
+  addUser(frmAddUser){
+    this.status = false;
+    this.mensajeError = '';
+    this.isError = false;
     this.authService.signup(this.user).subscribe( res =>{          
       console.log(res);
       if(res._id){
-        this.mensaje = "El registro se ha realizado correctamente.";
+        this.status = true;
+        frmAddUser.reset();  
       }
     },
     err =>{

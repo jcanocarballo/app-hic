@@ -1,6 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +11,15 @@ import { AuthService } from './services/auth.service';
   ]
 })
 export class AppComponent implements OnInit, DoCheck{
+  
   public title:string;
   public identity;
+  public urlImage: string;
 
   constructor(private authService: AuthService,
     private router: Router){
     this.title = "APP";
+    this.urlImage = `${environment.URL_API}/user/`;
   }
 
   ngOnInit(){        

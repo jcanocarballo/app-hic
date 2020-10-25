@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     console.log('Componente home iniciado...')
     this.identity = this.authService.getIdentity();
+    console.log(this.identity);
   }
 
 }

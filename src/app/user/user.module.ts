@@ -10,10 +10,12 @@ import { MainComponent } from './components/main/main.component';
 import { ListComponent } from './components/list/list.component';
 import { EditComponent } from './components/edit/edit.component';
 import { AddComponent } from './components/add/add.component';
+import { DetalleComponent } from './components/detalle/detalle.component';
 
 // Servicios
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
+import { UploadService } from '../services/upload.service';
 import { AdminGuard } from '../guard/admin.guard';
 
 // Guards
@@ -23,7 +25,8 @@ import { AdminGuard } from '../guard/admin.guard';
     MainComponent,
     ListComponent, 
     EditComponent,
-    AddComponent
+    AddComponent,
+    DetalleComponent
   ],
   imports: [
     CommonModule,
@@ -35,12 +38,14 @@ import { AdminGuard } from '../guard/admin.guard';
     MainComponent,
     ListComponent, 
     EditComponent,
-    AddComponent
+    AddComponent,
+    DetalleComponent
   ],
   providers:[
     AuthService,
     UserService,
-    AdminGuard
+    AdminGuard,
+    UploadService
   ]
 })
 export class UserModule { }

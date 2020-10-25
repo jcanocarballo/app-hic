@@ -8,6 +8,7 @@ export class User {
   public ape_mat: string;
   public telefono: string;
   public role: string;
+  public image: string;
 
   constructor(
   ){
