@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --output-path apphic --aot --prod"
+    "postinstall": "ng build --output-path app-hic --aot --prod"
   },
   "engines": {
     "node": "v12.13.0",
