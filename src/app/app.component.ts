@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, DoCheck{
   constructor(private authService: AuthService,
     private router: Router){
     this.title = "APP";
-    this.urlImage = `${environment.URL_API}/user/`;
+    this.urlImage = `${environment.URL_API}/user`;
   }
 
   ngOnInit(){        
