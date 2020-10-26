@@ -23,7 +23,7 @@ export class DetalleComponent implements OnInit{
     private userService: UserService,
     private router: Router){
       this.title = "Detalle del usuario."
-      this.urlImage = `${environment.URL_API}/user/`;
+      this.urlImage = `${environment.URL_API}/user`;
     }
 
     ngOnInit(){

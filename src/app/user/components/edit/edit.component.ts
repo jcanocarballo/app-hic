@@ -34,7 +34,7 @@ export class EditComponent implements OnInit{
     private router: Router,
     private uploadService: UploadService){
       this.title = "Actualizar datos del usuario."
-      this.urlImage = `${environment.URL_API}/user/`;
+      this.urlImage = `${environment.URL_API}/user`;
     }
 
     ngOnInit(){
