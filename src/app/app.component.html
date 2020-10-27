@@ -13,7 +13,7 @@
         </li>
         <li>
           <a [routerLink]="['/usuarios']" [routerLinkActive]="['active']"
-          *ngIf="identity && identity.role == 'administrador'">
+          *ngIf="identity && identity.role == 'ROL_ADMIN'">
             <span class="glyphicon glyphicon-user"></span>
             Usuarios
           </a>
@@ -41,14 +41,14 @@
       </ul>
       <ul class="nav navbar-nav navbar-right" *ngIf="identity">
         <li *ngIf="identity.image" class="avatar">
-          <img src="{{ urlImage + '/get-image-file/' + identity.image}}" >
+          <img src="{{ urlImage + '/get-image-user/' + identity.image}}" >
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             {{identity.name}} <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li *ngIf="identity && identity.role == 'administrador'">
+            <li *ngIf="identity && identity.role == 'ROL_ADMIN'">
               <a [routerLink]="['/usuarios']">
                 <span class="glyphicon glyphicon-tasks"></span>
                 Administración

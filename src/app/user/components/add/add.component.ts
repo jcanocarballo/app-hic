@@ -33,7 +33,7 @@ export class AddComponent implements OnInit {
   isError: boolean = false;
 
   roles = [
-    { name: 'administrador'},
+    { name: 'ROL_ADMIN'},
     { name: 'usuario'},
     ];
     defaultOption = 'usuario';

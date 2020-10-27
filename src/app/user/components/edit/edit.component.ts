@@ -21,7 +21,7 @@ export class EditComponent implements OnInit{
   mensajeError: string = "";
   status: boolean;
   roles = [
-    { name: 'administrador'},
+    { name: 'ROL_ADMIN'},
     { name: 'usuario'},
     ];    
   public urlImage: string;

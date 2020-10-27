@@ -31,7 +31,7 @@ export class UploadService {
         }
       }
 
-      xhr.open('POST', `${environment.URL_API}/user/upload-image/${id}`, true);
+      xhr.open('POST', `${environment.URL_API}/user/upload-image-user/${id}`, true);
       xhr.setRequestHeader('Authorization', this.authService.getToken());
       xhr.send(formData);
     })
