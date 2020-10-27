@@ -1,0 +1,33 @@
+<div class="container" [@fadeIn]>
+  <div class="col-lg-6">
+    <div class="jumbotron">
+      <h3>{{title}}</h3>
+      <div class="alert alert-success" *ngIf="status">
+        Datos actualizados correctamente.
+      </div>
+      <p class="alert alert-danger" *ngIf="isError">{{ mensajeError }}</p>
+      <form #frmEditProduct="ngForm" class="login-container" *ngIf="product" (ngSubmit)="guardar()">
+        <p>
+          <input type="text" class="form-control" name="p_name" placeholder="Nombre" #p_name="ngModel" [(ngModel)]="product.p_name" required />           
+          <span *ngIf="!p_name.valid && p_name.touched">El nombre es requerido</span> 
+        </p>
+        <p>
+          <input type="text" class="form-control" name="p_description" placeholder="Descripción" #p_description="ngModel" [(ngModel)]="product.p_description" required />           
+          <span *ngIf="!p_description.valid && p_description.touched">La descripción es requerida</span> 
+        </p>
+        <p>
+          <input type="text" class="form-control" name="p_price" placeholder="Precio" #p_price="ngModel" [(ngModel)]="product.p_price" required />           
+          <span *ngIf="!p_price.valid && p_price.touched">El precio es requerido</span> 
+        </p> 
+        <div class="image_for_edit" *ngIf="product.image && product.image != 'null'">
+          <img src="{{ urlImage + '/get-image-product/' + product.image}}" >
+        </div>
+        <p>
+          <label>Sube una foto</label>
+          <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)">
+        </p>
+        <p><input type="submit" class="btn btn-primary" value="Guardar" [disabled]="!frmEditProduct.form.valid"></p>
+      </form> 
+    </div>
+  </div>
+</div>

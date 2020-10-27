@@ -11,7 +11,7 @@ export class UploadService {
   constructor( public httpClient: HttpClient,
     private authService: AuthService) { }
 
-  makeFileRequest(id, params: Array<string>, files: Array<File>, name: string){
+  makeFileRequest(url: string, id, params: Array<string>, files: Array<File>, name: string){
     return new Promise((resolve, reject) => {
       let formData: any = new FormData();
       let xhr = new XMLHttpRequest();
@@ -31,7 +31,7 @@ export class UploadService {
         }
       }
 
-      xhr.open('POST', `${environment.URL_API}/user/upload-image-user/${id}`, true);
+      xhr.open('POST', `${environment.URL_API}/${url}/${id}`, true);
       xhr.setRequestHeader('Authorization', this.authService.getToken());
       xhr.send(formData);
     })

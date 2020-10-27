@@ -18,15 +18,35 @@
           <td>{{product.p_description}}</td>
           <td>$ {{product.p_price}}</td>
           <td>
-            <a class="btn btn-sm btn-success">
+            <a [routerLink]="['/productos/detalle', product._id]" class="btn btn-sm btn-success">
               <span class="glyphicon glyphicon-eye-open"></span>            
             </a>
-            <a style="margin-left: 1px" class="btn btn-sm btn-primary">
+            <a [routerLink]="['/productos/editar', product._id]" style="margin-left: 1px" class="btn btn-sm btn-primary">
               <span class="glyphicon glyphicon-pencil"></span>            
             </a>
-            <a role="button" style="margin-left: 1px" data-toggle="modal" class="btn btn-sm btn-danger">
+            <a  href="#myModal-{{product._id}}" role="button" style="margin-left: 1px" data-toggle="modal" class="btn btn-sm btn-danger">
               <span class="glyphicon glyphicon-trash"></span>            
             </a>
+            <div id="myModal-{{product._id}}" class="modal fade" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">¿Estas seguro?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>¿Seguro que quieres eliminar al producto <strong>{{product.p_name}}</strong>?</p>
+                    <p>Si borras este producto no podras recuperarlo.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="deleteProduct(product._id)" data-dismiss="modal">Borrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </td>
         </tr>
         </tbody>

@@ -41,7 +41,7 @@ export class AddComponent implements OnInit {
     this.product.p_name = '';
     this.product.p_description = '';
     this.product.p_price = 0;
-    this.product.p_image = '';
+    this.product.image = '';
     this.product.p_created = '';
     this.product.p_modified = '';
   }
