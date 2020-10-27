@@ -45,7 +45,7 @@ export class ProductService {
       'Content-Type':'application/json',
       'authorization': this.authService.getToken()
     });
-    return this.httpClient.post<Product>(`${environment.URL_API}/product`,product).pipe(tap(
+    return this.httpClient.post<Product>(`${environment.URL_API}/product`,params, {headers: headers}).pipe(tap(
       (res: Product) => {
         if(res){
           return res;
