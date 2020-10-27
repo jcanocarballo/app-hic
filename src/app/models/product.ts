@@ -1,12 +1,13 @@
 export class Product {
 
   public _id: string;
-  public p_name: string;
-  public p_description: string;
-  public p_price: number;
+  public codigo: string;
+  public name: string;
+  public description: string;
+  public price: number;
   public image: string;
-  public p_created: string;
-  public p_modified: string;
+  public created: string;
+  public modified: string;
   
   constructor(
   ){
