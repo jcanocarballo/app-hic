@@ -9,6 +9,8 @@ import { AdminRoutingModule } from './product-routing.module';
 import { MainComponent } from './components/main/main.component';
 import { ListComponent } from './components/list/list.component';
 import { AddComponent } from './components/add/add.component';
+import { EditComponent } from './components/edit/edit.component';
+import { DetalleComponent } from './components/detalle/detalle.component';
 
 // Servicios
 import { ProductService } from '../services/product.service';
@@ -25,6 +27,8 @@ import { SearchPipe } from './pipes/search.pipe';
     MainComponent,
     ListComponent, 
     AddComponent,
+    EditComponent,
+    DetalleComponent,
     SearchPipe
   ],
   imports: [
@@ -36,7 +40,9 @@ import { SearchPipe } from './pipes/search.pipe';
   exports: [
     MainComponent,
     ListComponent,
-    AddComponent 
+    AddComponent,
+    EditComponent,
+    DetalleComponent
   ],
   providers:[
     AuthService,

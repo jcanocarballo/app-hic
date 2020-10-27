@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UserService } from '../../../services/user.service';
-import { User } from '../../../models/user';
+import { ProductService } from '../../../services/product.service';
+import { Product } from '../../../models/product';
 import { fadeIn } from '../../../components/animation';
 import { UploadService } from '../../../services/upload.service';
 import { environment } from '../../../../environments/environment';
@@ -16,39 +16,35 @@ import { environment } from '../../../../environments/environment';
 export class EditComponent implements OnInit{
   
   public title:string;
-  public user: User;
+  public product: Product;
   isError: boolean = false;
   mensajeError: string = "";
-  status: boolean;
-  roles = [
-    { name: 'ROL_ADMIN'},
-    { name: 'ROL_USER'},
-    ];    
+  status: boolean;  
   public urlImage: string;
-  public idUser: string;
+  public idProduct: string;
 
   public filesToUpload: Array<File>;
 
   constructor(private route: ActivatedRoute, 
-    private userService: UserService,
+    private productService: ProductService,
     private router: Router,
     private uploadService: UploadService){
-      this.title = "Actualizar datos del usuario."
-      this.urlImage = `${environment.URL_API}/user`;
+      this.title = "Actualizar datos del producto."
+      this.urlImage = `${environment.URL_API}/product`;
     }
 
     ngOnInit(){
       console.log("Componete registrar iniciado...");
-      this.getUsuarioById();
+      this.getProductById();
     }
-    getUsuarioById(){
+    getProductById(){
       this.route.params.forEach((params: Params) => {
-        this.idUser = params['id'];
-        if(!this.idUser){
-          this.router.navigateByUrl('/usuarios/listado');
+        this.idProduct = params['id'];
+        if(!this.idProduct){
+          this.router.navigateByUrl('/productos/listado');
         }
-        this.userService.getUsuarioById(this.idUser).subscribe(res => {
-          this.user = res;
+        this.productService.getProductById(this.idProduct).subscribe(res => {
+          this.product = res;
         },
         err =>{
           console.log(err);
@@ -58,18 +54,18 @@ export class EditComponent implements OnInit{
     guardar(){
       this.mensajeError = '';
       this.isError = false;
-      this.userService.updateUser(this.user).subscribe(res => {
+      this.productService.updateProduct(this.product).subscribe(res => {
         if(!res._id){
           this.isError = true;
         }else{
           this.status = true;
           if(!this.filesToUpload){
-            this.router.navigate(['/usuarios/detalle', this.user._id]);
+            this.router.navigate(['/productos/detalle', this.product._id]);
           }else{
-            this.uploadService.makeFileRequest('user/upload-image-user',this.idUser,[], this.filesToUpload, 'image')
-            .then((res: User) => {
-              this.user.image = res.image;
-              this.router.navigate(['/usuarios/detalle', this.user._id]);
+            this.uploadService.makeFileRequest('product/upload-image-product', this.idProduct,[], this.filesToUpload, 'image')
+            .then((res: Product) => {
+              this.product.image = res.image;
+              this.router.navigate(['/productos/detalle', this.product._id]);
             })
             .catch(err => {
               console.log(err);
