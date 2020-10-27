@@ -6,6 +6,7 @@
       <table #productsTable class="display" style="width:100%">
         <thead>
         <tr>
+        <th>Codigo</th>
         <th>Nombre</th>
         <th>Descripción</th>
         <th>Precio</th>
@@ -14,9 +15,10 @@
         </thead>
         <tbody>
         <tr *ngFor="let product of products">
-          <td>{{product.p_name}}</td>
-          <td>{{product.p_description}}</td>
-          <td>$ {{product.p_price}}</td>
+          <td>{{product.codigo}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.description}}</td>
+          <td>$ {{product.price}}</td>
           <td>
             <a [routerLink]="['/productos/detalle', product._id]" class="btn btn-sm btn-success">
               <span class="glyphicon glyphicon-eye-open"></span>            
@@ -37,7 +39,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <p>¿Seguro que quieres eliminar al producto <strong>{{product.p_name}}</strong>?</p>
+                    <p>¿Seguro que quieres eliminar al producto <strong>{{product.name}}</strong>?</p>
                     <p>Si borras este producto no podras recuperarlo.</p>
                   </div>
                   <div class="modal-footer">

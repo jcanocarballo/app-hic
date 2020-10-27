@@ -38,12 +38,12 @@ export class AddComponent implements OnInit {
     this.title = 'Registrar nuevo producto';
     this.status = false;
     this.product = new Product();
-    this.product.p_name = '';
-    this.product.p_description = '';
-    this.product.p_price = 0;
+    this.product.name = '';
+    this.product.description = '';
+    this.product.price = 0;
     this.product.image = '';
-    this.product.p_created = '';
-    this.product.p_modified = '';
+    this.product.created = '';
+    this.product.modified = '';
   }
 
   ngOnInit(){}
