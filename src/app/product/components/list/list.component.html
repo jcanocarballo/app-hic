@@ -1,0 +1,36 @@
+<div class="container">
+  <br>
+  <h3>{{title}}</h3>
+  <div class="row">
+    <div class="col-10 col-lg-10 col-md-10 col-sm-12 col-xl-12 col-xs-12">
+      <table #productsTable class="display" style="width:100%">
+        <thead>
+        <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{product.p_name}}</td>
+          <td>{{product.p_description}}</td>
+          <td>$ {{product.p_price}}</td>
+          <td>
+            <a class="btn btn-sm btn-success">
+              <span class="glyphicon glyphicon-eye-open"></span>            
+            </a>
+            <a style="margin-left: 1px" class="btn btn-sm btn-primary">
+              <span class="glyphicon glyphicon-pencil"></span>            
+            </a>
+            <a role="button" style="margin-left: 1px" data-toggle="modal" class="btn btn-sm btn-danger">
+              <span class="glyphicon glyphicon-trash"></span>            
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<div class="navigation col-lg-12">
+<div class="navigation col-lg-11">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -13,9 +13,16 @@
         </li>
         <li>
           <a [routerLink]="['/usuarios']" [routerLinkActive]="['active']"
-          *ngIf="identity && identity.role == 'administrador'">
+          *ngIf="identity && identity.role == 'ROL_ADMIN'">
             <span class="glyphicon glyphicon-user"></span>
             Usuarios
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/productos']" [routerLinkActive]="['active']"
+          *ngIf="identity && identity.role == 'ROL_ADMIN'">
+            <span class="glyphicon glyphicon-product"></span>
+            Productos
           </a>
         </li>
         <li>
@@ -41,14 +48,14 @@
       </ul>
       <ul class="nav navbar-nav navbar-right" *ngIf="identity">
         <li *ngIf="identity.image" class="avatar">
-          <img src="{{ urlImage + '/get-image-file/' + identity.image}}" >
+          <img src="{{ urlImage + '/get-image-user/' + identity.image}}" >
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             {{identity.name}} <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li *ngIf="identity && identity.role == 'administrador'">
+            <li *ngIf="identity && identity.role == 'ROL_ADMIN'">
               <a [routerLink]="['/usuarios']">
                 <span class="glyphicon glyphicon-tasks"></span>
                 Administración

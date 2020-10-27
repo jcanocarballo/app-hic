@@ -15,7 +15,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainEmailComponent implements OnInit{
   
-  title = ' *******************';
+  title = ' ************';
   
   ngOnInit(){
     console.log("Componente principal del modulo cargado....");

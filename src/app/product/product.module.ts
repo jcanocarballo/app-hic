@@ -3,17 +3,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AdminRoutingModule } from './user-routing.module';
+import { AdminRoutingModule } from './product-routing.module';
 
 // Components
 import { MainComponent } from './components/main/main.component';
 import { ListComponent } from './components/list/list.component';
-import { EditComponent } from './components/edit/edit.component';
 import { AddComponent } from './components/add/add.component';
-import { DetalleComponent } from './components/detalle/detalle.component';
 
 // Servicios
-import { UserService } from '../services/user.service';
+import { ProductService } from '../services/product.service';
 import { AuthService } from '../services/auth.service';
 import { UploadService } from '../services/upload.service';
 
@@ -26,9 +24,7 @@ import { SearchPipe } from './pipes/search.pipe';
   declarations: [
     MainComponent,
     ListComponent, 
-    EditComponent,
     AddComponent,
-    DetalleComponent,
     SearchPipe
   ],
   imports: [
@@ -39,16 +35,14 @@ import { SearchPipe } from './pipes/search.pipe';
   ],
   exports: [
     MainComponent,
-    ListComponent, 
-    EditComponent,
-    AddComponent,
-    DetalleComponent
+    ListComponent,
+    AddComponent 
   ],
   providers:[
     AuthService,
-    UserService,
+    ProductService,
     AdminGuard,
     UploadService
   ]
 })
-export class UserModule { }
+export class ProductModule { }

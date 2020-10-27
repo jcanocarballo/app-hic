@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import { User } from '../../../models/user';
-import { UserService } from '../../../services/user.service';
+import { Product } from '../../../models/product';
+import { ProductService } from '../../../services/product.service';
 import { fadeIn } from '../../../components/animation';
 
 @Component({
@@ -12,35 +12,35 @@ import { fadeIn } from '../../../components/animation';
   ]
 })
 export class ListComponent implements OnInit{
-  title = 'Listado de usuarios';
+  title = 'Lista de productos';
   numbers = new Array(10);
-  users = new Array();
+  products = new Array();
   busqueda: string;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private userService: UserService){
+              private productService: ProductService){
 
   }
 
   ngOnInit(){
-    this.getUsuarios();
+    this.getProducts();
   }
 
-  getUsuarios(){
-    this.userService.getUsuarios().subscribe( res => {
-      this.users = res
-      console.log(this.users)
+  getProducts(){
+    this.productService.getProducts().subscribe( res => {
+      this.products = res
+      console.log(this.products)
     },
     err =>{
       console.log(err)
     })
   }
 
-  deleteUser(id){
-    this.userService.deleteUser(id).subscribe(res =>{
+  deleteProduct(id){
+    this.productService.deleteProduct(id).subscribe(res =>{
       if(res){
-        this.getUsuarios();
+        this.getProducts();
       }else{
         alert("Error en el servidor");
       }
