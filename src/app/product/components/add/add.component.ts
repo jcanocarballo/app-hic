@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router'
-import { User } from '../../../models/user';
-import { AuthService } from '../../../services/auth.service';
+import { Product } from '../../../models/product';
+import { ProductService } from '../../../services/product.service';
 import { fadeIn } from '../../../components/animation';
 
 @Component({
@@ -28,41 +28,35 @@ import { fadeIn } from '../../../components/animation';
 export class AddComponent implements OnInit {
   public status;
   public title;
-  public user: User;
+  public product: Product;
   mensajeError: string = "";
   isError: boolean = false;
 
-  roles = [
-    { name: 'ROL_ADMIN'},
-    { name: 'ROL_USER'},
-    ];
-    defaultOption = 'ROL_USER';
-
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private authService: AuthService){
-    this.title = 'Registrar nuevo usuario';
+              private productService: ProductService){
+    this.title = 'Registrar nuevo producto';
     this.status = false;
-    this.user = new User();
-    this.user.name = '';
-    this.user.ape_pat = '';
-    this.user.ape_mat = '';
-    this.user.username = '';
-    this.user.password = '';
-    this.user.telefono = '';
+    this.product = new Product();
+    this.product.p_name = '';
+    this.product.p_description = '';
+    this.product.p_price = 0;
+    this.product.p_image = '';
+    this.product.p_created = '';
+    this.product.p_modified = '';
   }
 
   ngOnInit(){}
 
-  addUser(frmAddUser){
+  addProduct(frmAddProduct){
     this.status = false;
     this.mensajeError = '';
     this.isError = false;
-    this.authService.signup(this.user).subscribe( res =>{          
+    this.productService.addProduct(this.product).subscribe( res =>{          
       console.log(res);
       if(res._id){
         this.status = true;
-        frmAddUser.reset();  
+        frmAddProduct.reset();  
       }
     },
     err =>{

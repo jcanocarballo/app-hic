@@ -1,4 +1,4 @@
-export class User {
+export class Product {
 
   public _id: string;
   public p_name: string;
