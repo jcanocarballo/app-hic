@@ -16,9 +16,11 @@ import { DetalleComponent } from './components/detalle/detalle.component';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { UploadService } from '../services/upload.service';
-import { AdminGuard } from '../guard/admin.guard';
 
 // Guards
+import { AdminGuard } from '../guard/admin.guard';
+
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { AdminGuard } from '../guard/admin.guard';
     ListComponent, 
     EditComponent,
     AddComponent,
-    DetalleComponent
+    DetalleComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,

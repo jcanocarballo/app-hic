@@ -15,6 +15,7 @@ export class ListComponent implements OnInit{
   title = 'Listado';
   numbers = new Array(10);
   users = new Array();
+  busqueda: string;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
