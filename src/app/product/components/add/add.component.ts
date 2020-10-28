@@ -3,6 +3,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Router, ActivatedRoute } from '@angular/router'
 import { Product } from '../../../models/product';
 import { ProductService } from '../../../services/product.service';
+import { UploadService } from '../../../services/upload.service';
 import { fadeIn } from '../../../components/animation';
 
 @Component({
@@ -31,16 +32,19 @@ export class AddComponent implements OnInit {
   public product: Product;
   mensajeError: string = "";
   isError: boolean = false;
+  filesToUpload: Array<File>;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private productService: ProductService){
+              private productService: ProductService,
+              private uploadService: UploadService){
     this.title = 'Registrar nuevo producto';
     this.status = false;
     this.product = new Product();
     this.product.name = '';
-    this.product.description = '';
+    this.product.category = '';
     this.product.price = 0;
+    this.product.cantidad = 0;
     this.product.image = '';
     this.product.created = '';
     this.product.modified = '';
@@ -52,11 +56,19 @@ export class AddComponent implements OnInit {
     this.status = false;
     this.mensajeError = '';
     this.isError = false;
-    this.productService.addProduct(this.product).subscribe( res =>{          
-      console.log(res);
+    this.productService.addProduct(this.product).subscribe( res =>{ 
       if(res._id){
         this.status = true;
         frmAddProduct.reset();  
+        if(this.filesToUpload){
+          this.uploadService.makeFileRequest('product/upload-image-product', res._id,[], this.filesToUpload, 'image')
+            .then((res: Product) => {
+              console.log(res);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }
       }
     },
     err =>{
@@ -67,5 +79,8 @@ export class AddComponent implements OnInit {
         this.mensajeError = `El servicio no se ecuentra disponible.`;
       }           
     });
+  }
+  fileChangeEvent(image: any){
+    this.filesToUpload = <Array<File>>image.target.files;
   }
 }

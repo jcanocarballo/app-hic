@@ -8,8 +8,9 @@
         <tr>
         <th>Codigo</th>
         <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Precio</th>
+        <th>Categoria</th>
+        <th>Cantidad</th>
+        <th>Precio</th>        
         <th>Acciones</th>
         </tr>
         </thead>
@@ -17,8 +18,9 @@
         <tr *ngFor="let product of products">
           <td>{{product.codigo}}</td>
           <td>{{product.name}}</td>
-          <td>{{product.description}}</td>
-          <td>$ {{product.price}}</td>
+          <td>{{product.category}}</td>
+          <td>{{product.cantidad}}</td>
+          <td>$ {{product.price}}</td>          
           <td>
             <a [routerLink]="['/productos/detalle', product._id]" class="btn btn-sm btn-success">
               <span class="glyphicon glyphicon-eye-open"></span>            

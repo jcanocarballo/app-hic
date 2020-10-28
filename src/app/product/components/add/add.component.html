@@ -16,12 +16,20 @@
           <span *ngIf="!name.valid && name.touched">El nombre es requerido</span> 
         </p>
         <p>
-          <input type="text" class="form-control" name="description" placeholder="Descripción" #description="ngModel" [(ngModel)]="product.description" required />           
-          <span *ngIf="!description.valid && description.touched">La descripción es requerida</span> 
+          <input type="text" class="form-control" name="category" placeholder="Categoria" #category="ngModel" [(ngModel)]="product.category" required />           
+          <span *ngIf="!category.valid && category.touched">La categoria es requerida</span> 
         </p>
         <p>
           <input type="text" class="form-control" name="price" placeholder="Precio" #price="ngModel" [(ngModel)]="product.price" required />           
           <span *ngIf="!price.valid && price.touched">El precio es requerido</span> 
+        </p>
+        <p>
+          <input type="text" class="form-control" name="cantidad" placeholder="Cantidad" #cantidad="ngModel" [(ngModel)]="product.cantidad" required />           
+          <span *ngIf="!cantidad.valid && cantidad.touched">La cantidad es requerida</span> 
+        </p>
+        <p>
+          <label>Imagen</label>
+          <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)">
         </p>        
         <input type="submit" value="Registrar producto" class="btn btn-success" [disabled]="!frmAddProduct.form.valid">
       </form>   
