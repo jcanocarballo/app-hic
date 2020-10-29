@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { HomeModule } from './components/home/home.module';
 import { ContactoModule } from './components/contacto/contacto.module';
 import { ProductModule } from './product/product.module';
+import { CategoryModule } from './category/category.module';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'home', loadChildren: './components/home/home.module#HomeModule'},
   {path: 'contacto', loadChildren: './components/contacto/contacto.module#ContactoModule'},
   {path: '', loadChildren: './product/product.module#ProductModule'},
+  {path: '', loadChildren: './category/category.module#CategoryModule'},
   {path: 'perfil', component: PerfilComponent }
 ];
 

@@ -1,0 +1,22 @@
+<div class="container" [@fadeIn]>
+  <div class="col-lg-6 col-lg-offset-2">
+    <div class="jumbotron">
+      <h3>{{title}}</h3>   
+      <div class="alert alert-success" *ngIf="status">
+        Producto registrado correctamente.
+      </div> 
+      <p class="alert alert-danger" *ngIf="isError">{{ mensajeError }}</p>   
+      <form #frmAddCategory="ngForm" (ngSubmit)="addCategory(frmAddCategory)">
+        <p>
+          <input type="text" class="form-control" name="name" placeholder="Nombre" #name="ngModel" [(ngModel)]="category.name" required />           
+          <span *ngIf="!name.valid && name.touched">El nombre es requerido</span> 
+        </p>
+        <p>
+          <input type="text" class="form-control" name="description" placeholder="Descripción" #description="ngModel" [(ngModel)]="category.description" required />           
+          <span *ngIf="!description.valid && description.touched">La descripción es requerida</span> 
+        </p>        
+        <input type="submit" value="Registrar producto" class="btn btn-success" [disabled]="!frmAddCategory.form.valid">
+      </form>   
+    </div>
+  </div>
+</div>

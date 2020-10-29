@@ -26,6 +26,13 @@
           </a>
         </li>
         <li>
+          <a [routerLink]="['/categorias']" [routerLinkActive]="['active']"
+          *ngIf="identity && identity.role == 'ROL_ADMIN'">
+            <span class="glyphicon glyphicon-th-list"></span>
+            Categorias
+          </a>
+        </li>
+        <li>
           <a [routerLink]="['/contacto']" [routerLinkActive]="['active']">
             <span class="glyphicon glyphicon-comment"></span>
             Contacto

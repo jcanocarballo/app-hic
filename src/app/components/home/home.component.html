@@ -13,6 +13,11 @@
       [routerLink]="['/productos']">
         Productos
       </a>
+      <a class="btn btn-primary btn-lg" style="margin-left: 4px" role="button"
+      *ngIf="identity && identity.role == 'ROL_ADMIN'"
+      [routerLink]="['/categorias']">
+        Categorias
+      </a>
       <a class="btn btn-warning btn-lg" style="margin-left: 4px" role="button" [routerLink]="['/contacto']">
         Contacto con nosotros
       </a>

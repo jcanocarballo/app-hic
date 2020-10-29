@@ -1,0 +1,54 @@
+<div class="container">
+  <br>
+  <h3>{{title}}</h3>
+  <div class="row">
+    <div class="col-10 col-lg-10 col-md-10 col-sm-12 col-xl-12 col-xs-12">
+      <table #categoryTable class="display" style="width:100%">
+        <thead>
+        <tr>
+        <th>Nombre</th>
+        <th>description</th>   
+        <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let category of categories">
+          <td>{{category.name}}</td>
+          <td>{{category.description}}</td>        
+          <td>
+            <a [routerLink]="['/categorias/detalle', category._id]" class="btn btn-sm btn-success">
+              <span class="glyphicon glyphicon-eye-open"></span>            
+            </a>
+            <a [routerLink]="['/categorias/editar', category._id]" style="margin-left: 1px" class="btn btn-sm btn-primary">
+              <span class="glyphicon glyphicon-pencil"></span>            
+            </a>
+            <a  href="#myModal-{{category._id}}" role="button" style="margin-left: 1px" data-toggle="modal" class="btn btn-sm btn-danger">
+              <span class="glyphicon glyphicon-trash"></span>            
+            </a>
+            <div id="myModal-{{category._id}}" class="modal fade" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">¿Estas seguro?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>¿Seguro que quieres eliminar la categoria <strong>{{category.name}}</strong>?</p>
+                    <p>Si borras esta categoria no podras recuperarla.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="deleteCategory(category._id)" data-dismiss="modal">Borrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
